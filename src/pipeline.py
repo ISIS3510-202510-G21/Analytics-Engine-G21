@@ -7,18 +7,27 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import data_loader
-from src.BQ import bq5
-from src.BQ import bq2
+from src.BQ import bq1, bq2, bq4, bq5
 from firebase_config import db
 from google.cloud import firestore 
 
 
 def pipeline():
-    #cargar archivos
+
+    # Cargar archivos
     data=data_loader.load_all_collections()
-    #Responder pregunta 5
+    
+    # Responder pregunta 1
+    df_bq1 = bq1.answer_bq1(data)
+    exporter_csv.save_df_csv(df_bq1, "bq1Answer")
+
+    # Responder pregunta 5
     df_bq5=bq5.answer_bq5(data)
     exporter_csv.save_df_csv(df_bq5,"bq5Answer")
+
+    # Responder pregunta 4
+    df_bq4=bq4.answer_attendance_rate(data)
+    exporter_csv.save_df_csv(df_bq4,"bq4Answer")
     
 def pipeline_recommendation_bq2():
     # Cargar datos de Firestore
@@ -40,3 +49,9 @@ def pipeline_recommendation_bq2():
 if __name__ == "__main__":
     pipeline()
     pipeline_recommendation_bq2()
+
+
+
+
+
+
