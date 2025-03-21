@@ -29,6 +29,11 @@ def pipeline():
     df_bq4=bq4.answer_attendance_rate(data)
     exporter_csv.save_df_csv(df_bq4,"bq4Answer")
     
+    # Responder pregunta 4 Numero 2
+    df_bq4_2=bq4.answer_events_by_category(data)
+    exporter_csv.save_df_csv(df_bq4_2, "bq_4_Number_2.csv")
+    
+    
 def pipeline_recommendation_bq2():
     # Cargar datos de Firestore
     data = data_loader.load_all_collections()
