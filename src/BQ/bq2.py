@@ -1,7 +1,7 @@
 import pandas as pd
 from google.cloud import firestore
 
-#BQ5: What skills are most frequetly asscoiated with the highest-attened events?
+#BQ2: Which event category does a User like the most?
 
 import pandas as pd
 from google.cloud import firestore
