@@ -1,0 +1,8 @@
+﻿price_range,avg_attendees
+Low (1 - 10k),5
+Medium (30k - 70k),4
+High (70k - 120k),4
+Economy (10k - 30k),4
+Free,3
+Premium (120k - 200k),0
+Ultra Premium (200k+),0

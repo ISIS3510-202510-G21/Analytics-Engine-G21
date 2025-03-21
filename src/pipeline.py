@@ -6,12 +6,16 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import data_loader
-from src.BQ import bq5, bq4
+from src.BQ import bq1, bq5, bq4
 
 def pipeline():
 
     # Cargar archivos
     data=data_loader.load_all_collections()
+    
+    # Responder pregunta 1
+    df_bq1 = bq1.answer_bq1(data)
+    exporter_csv.save_df_csv(df_bq1, "bq1Answer")
 
     # Responder pregunta 5
     df_bq5=bq5.answer_bq5(data)
