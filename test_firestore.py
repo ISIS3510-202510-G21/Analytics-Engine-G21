@@ -1,5 +1,4 @@
 from src.firebase_config import db
-from src.data_loader import obtain_data_from_firestore
 
 def test_conexion():
     try:
