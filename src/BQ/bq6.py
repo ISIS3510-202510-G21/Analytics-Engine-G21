@@ -12,6 +12,7 @@ def answer_bq6(firestore_data):
     # Create a dataframe for categories and rename the id column
     df_categories = pd.DataFrame(firestore_data["categories"])
     df_categories.rename(columns={"id": "category_id"}, inplace=True)
+    df_categories.rename(columns={"name": "category_name"}, inplace=True)
 
     # Obtain the category id from the reference in the event
     df_events["category_id"] = df_events["category"].apply(
@@ -22,7 +23,7 @@ def answer_bq6(firestore_data):
     df_merged = df_events.merge(df_categories, on="category_id", how="left")
     
     # Group by category name and calculate the total attendees and registered users
-    grouped = df_merged.groupby("name").agg(
+    grouped = df_merged.groupby("category_name").agg(
         total_attendees=pd.NamedAgg(column="attendees_count", aggfunc="sum"),
         total_registered=pd.NamedAgg(column="users_registered", aggfunc="sum")
     ).reset_index()
@@ -38,3 +39,4 @@ def answer_bq6(firestore_data):
     grouped = grouped.sort_values(by="engagement", ascending=False)
     
     return grouped
+    
