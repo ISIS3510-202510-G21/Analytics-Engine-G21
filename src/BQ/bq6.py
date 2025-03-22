@@ -37,6 +37,4 @@ def answer_bq6(firestore_data):
     # Order by engagement in descending order
     grouped = grouped.sort_values(by="engagement", ascending=False)
     
-    # Generar CSV (puedes guardarlo a disco o devolverlo como string)
-    csv_result = grouped.to_csv(index=False)
-    return csv_result
+    return grouped
