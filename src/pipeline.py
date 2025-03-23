@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import data_loader
-from src.BQ import bq1, bq2, bq4, bq5, bq6
+from src.BQ import bq1, bq2, bq4_Number_2 as bq3, bq4, bq5, bq6
 from firebase_config import db
 from google.cloud import firestore 
 
@@ -34,8 +34,8 @@ def pipeline():
     exporter_csv.save_df_csv(df_bq6,"bq6Answer")
     
     # Responder pregunta 4 Numero 2
-    df_bq4_2=bq4.answer_events_by_category(data)
-    exporter_csv.save_df_csv(df_bq4_2, "bq_4_Number_2.csv")
+    df_bq4_2=bq3.answer_events_by_category(data)
+    exporter_csv.save_df_csv(df_bq4_2, "bq3Answer")
     
     
 def pipeline_recommendation_bq2():
