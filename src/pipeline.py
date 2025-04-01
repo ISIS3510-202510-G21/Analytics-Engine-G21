@@ -48,7 +48,7 @@ def pipeline_recommendation_bq2():
         # Generar recomendaciones para el usuario
         recommended_events = bq2.recommend_events_for_user(user_id, data)
         if recommended_events:
-            db.collection("recommendations").document(user_id).set({"events": recommended_events})
+            db.collection("users").document(user_id).update({"recommended_events": recommended_events})
             print(f"Recommendations saved for user {user_id}.")
         else:
             print(f"No recommendations found for user {user_id}.")
