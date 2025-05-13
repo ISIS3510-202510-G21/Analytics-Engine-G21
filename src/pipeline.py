@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import data_loader
 from BQ_Sprint2 import bq1, bq2, bq3, bq4, bq5, bq6 
-from BQ_Sprint3 import bq6_S3
+from BQ_Sprint3 import bq3_S3, bq6_S3
 from firebase_config import db
 from google.cloud import firestore 
 
@@ -42,6 +42,10 @@ def pipeline():
     exporter_csv.save_df_csv(df_bq6,"bq6-S2Answer")
 
     # ---- Sprint 3 ----
+
+    # Responder pregunta 3
+    df_bq3_S3=bq3_S3.answer_search_event_usage(data)
+    exporter_csv.save_df_csv(df_bq3_S3, "bq3-S3Answer")
     
     # Responder pregunta 6
     df_bq6_S3=bq6_S3.topSkills(data)
