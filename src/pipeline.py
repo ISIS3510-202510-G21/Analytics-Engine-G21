@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import data_loader
 from BQ_Sprint2 import bq1, bq2, bq3, bq4, bq5, bq6 
-from BQ_Sprint3 import bq6_S3, bq4_S3,bq5_S3, bq3_S3
+from BQ_Sprint3 import bq6_S3, bq4_S3,bq5_S3, bq3_S3, bq7_S3
 from firebase_config import db
 from google.cloud import firestore 
 
@@ -55,10 +55,15 @@ def pipeline():
     exporter_csv.save_df_csv(df_bq5_S3_summary, "bq5-S3Answer")
     exporter_csv.save_df_csv(df_bq5_S3_clicks_per_day, "bq5-S3Answer_clicks_per_day")
 
-    
     # Responder pregunta 6
     df_bq6_S3=bq6_S3.topSkills(data)
     exporter_csv.save_df_csv(df_bq6_S3, "bq6-S3Answer")
+    
+    # Responder pregunta 7
+    df_bq7_S3, df_bq7_S3_clicks_per_day = bq7_S3.process_event_detail_clicks(data)
+    exporter_csv.save_df_csv(df_bq7_S3, "bq7-S3Answer")
+    exporter_csv.save_df_csv(df_bq7_S3_clicks_per_day, "bq7-S3Answer_clicks_per_day")
+
     
     
 def pipeline_recommendation_bq2():
