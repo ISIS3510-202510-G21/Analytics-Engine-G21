@@ -100,4 +100,4 @@ def pipeline_recommendation_bq2():
 
 if __name__ == "__main__":
     pipeline()
-    #pipeline_recommendation_bq2()
+    pipeline_recommendation_bq2()
